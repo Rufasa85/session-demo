@@ -13,6 +13,11 @@ router.post("/signup", (req, res) => {
         email: req.body.email,
         password: req.body.password
     }).then(newUser => {
+        req.session.user = {
+            id: newUser.id,
+            email: newUser.email,
+            username: newUser.username
+        };
         res.json(newUser)
     }).catch(err => {
         console.log(err);
